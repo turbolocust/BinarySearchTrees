@@ -42,7 +42,7 @@ public class ArrayUtils {
     /**
      * Select nth smallest element in array from sublist.
      * 
-     * @param @param data Data array.
+     * @param data Data array.
      * @param sublistStartIndex Sublist start index.
      * @param sublistEndIndex Sublist end index.
      * @param n N parameter.

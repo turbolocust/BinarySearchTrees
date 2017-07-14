@@ -2,10 +2,10 @@ package org.intelligentjava.algos.trees;
 
 /**
  * Splay tree implementation.
- * 
+ *
  * @author Ignas Lelys
  * @created Jul 19, 2011
- * 
+ *
  */
 public class SplayTree extends AbstractSelfBalancingBinarySearchTree {
 
@@ -20,7 +20,7 @@ public class SplayTree extends AbstractSelfBalancingBinarySearchTree {
         }
         return node;
     }
-    
+
     /**
      * @see org.intelligentjava.algos.trees.AbstractBinarySearchTree#insert(int)
      */
@@ -48,9 +48,13 @@ public class SplayTree extends AbstractSelfBalancingBinarySearchTree {
         }
         return successor;
     }
-    
+
     /**
-     * @see org.intelligentjava.algos.trees.AbstractBinarySearchTree#createNode(int, org.intelligentjava.algos.trees.AbstractBinarySearchTree.Node, org.intelligentjava.algos.trees.AbstractBinarySearchTree.Node, org.intelligentjava.algos.trees.AbstractBinarySearchTree.Node)
+     * @see
+     * org.intelligentjava.algos.trees.AbstractBinarySearchTree#createNode(int,
+     * org.intelligentjava.algos.trees.AbstractBinarySearchTree.Node,
+     * org.intelligentjava.algos.trees.AbstractBinarySearchTree.Node,
+     * org.intelligentjava.algos.trees.AbstractBinarySearchTree.Node)
      */
     @Override
     protected Node createNode(int value, Node parent, Node left, Node right) {
@@ -59,9 +63,8 @@ public class SplayTree extends AbstractSelfBalancingBinarySearchTree {
 
     /**
      * Splay operation. Move node to the root through some tree transformations.
-     * 
-     * @param node
-     *            Node to perform splay operation on.
+     *
+     * @param node Node to perform splay operation on.
      */
     protected void splay(Node node) {
         // move node up until its root
@@ -85,18 +88,15 @@ public class SplayTree extends AbstractSelfBalancingBinarySearchTree {
                 if (nodeAndParentLeftChildren) {
                     rotateRight(grandParent);
                     rotateRight(parent);
-                }  
-                // Zig zig step to the left
+                } // Zig zig step to the left
                 else if (nodeAndParentRightChildren) {
                     rotateLeft(grandParent);
                     rotateLeft(parent);
-                }
-                // Zig zag steps
+                } // Zig zag steps
                 else if (nodeRightChildParentLeftChild) {
                     rotateLeft(parent);
                     rotateRight(grandParent);
-                }
-                else if (nodeLeftChildParentRightChild) {
+                } else if (nodeLeftChildParentRightChild) {
                     rotateRight(parent);
                     rotateLeft(grandParent);
                 }

@@ -3,16 +3,16 @@ package org.intelligentjava.algos.trees;
 /**
  * Abstract class for self balancing binary search trees. Contains some methods
  * that is used for self balancing trees.
- * 
+ *
  * @author Ignas Lelys
  * @created Jul 24, 2011
- * 
+ *
  */
 public abstract class AbstractSelfBalancingBinarySearchTree extends AbstractBinarySearchTree {
 
     /**
      * Rotate to the left.
-     * 
+     *
      * @param node Node on which to rotate.
      * @return Node that is in place of provided node after rotation.
      */
@@ -38,13 +38,13 @@ public abstract class AbstractSelfBalancingBinarySearchTree extends AbstractBina
         } else {
             root = temp;
         }
-        
+
         return temp;
     }
 
     /**
      * Rotate to the right.
-     * 
+     *
      * @param node Node on which to rotate.
      * @return Node that is in place of provided node after rotation.
      */
@@ -70,7 +70,7 @@ public abstract class AbstractSelfBalancingBinarySearchTree extends AbstractBina
         } else {
             root = temp;
         }
-        
+
         return temp;
     }
 

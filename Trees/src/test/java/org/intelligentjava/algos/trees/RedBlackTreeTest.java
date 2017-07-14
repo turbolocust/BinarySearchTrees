@@ -1,6 +1,6 @@
 package org.intelligentjava.algos.trees;
 
-import org.intelligentjava.algos.trees.AbstractBinarySearchTree.Node;
+import org.intelligentjava.algos.SearchTree.Node;
 import org.intelligentjava.algos.trees.RedBlackTree.ColorEnum;
 import org.intelligentjava.algos.trees.RedBlackTree.RedBlackNode;
 import org.junit.Assert;
@@ -86,12 +86,12 @@ public class RedBlackTreeTest {
      * Test BST properties method for RedBlack tree. Not using the one from {@link BaseBSTTest} because RedBlack tree implementation uses nilNode instead of nulls.
      */
     private void testTreeBSTProperties(Node entry) {
-        if (entry != RedBlackTree.nilNode) {
+        if (entry != RedBlackTree.NIL_NODE) {
             // test heap properties and BST properties
-            if (entry.left != RedBlackTree.nilNode) {
+            if (entry.left != RedBlackTree.NIL_NODE) {
                 Assert.assertTrue(entry.value >= entry.left.value);
             }
-            if (entry.right != RedBlackTree.nilNode) {
+            if (entry.right != RedBlackTree.NIL_NODE) {
                 Assert.assertTrue(entry.value <= entry.right.value);
             }
             testTreeBSTProperties(entry.left);

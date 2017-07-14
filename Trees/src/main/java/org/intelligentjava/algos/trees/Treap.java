@@ -3,22 +3,25 @@ package org.intelligentjava.algos.trees;
 import java.util.Random;
 
 /**
- * Treap is randomized binary search tree. Easiest way to randomize would be to get all elements in array and then after
- * random permutation insert them all. However that would require to know all elements in advance. Treap solves this by
- * introducing additional variable to its node - priority which is generated randomly.
- * 
+ * Treap is randomized binary search tree. Easiest way to randomize would be to
+ * get all elements in array and then after random permutation insert them all.
+ * However that would require to know all elements in advance. Treap solves this
+ * by introducing additional variable to its node - priority which is generated
+ * randomly.
+ *
  * @author Ignas Lelys
  * @created Jul 25, 2011
- * 
+ *
  */
 public class Treap extends AbstractSelfBalancingBinarySearchTree {
 
-    private Random random = new Random(System.currentTimeMillis());
+    private final Random random = new Random(System.currentTimeMillis());
 
     /**
-     * Insert same as normal binary search tree first, just TreapNode will have random number - priority. Then performs
-     * rotations up until root if priority of child is larger than priority of parent.
-     * 
+     * Insert same as normal binary search tree first, just TreapNode will have
+     * random number - priority. Then performs rotations up until root if
+     * priority of child is larger than priority of parent.
+     *
      * @see org.intelligentjava.algos.trees.AbstractBinarySearchTree#insert(int)
      */
     @Override
@@ -48,14 +51,14 @@ public class Treap extends AbstractSelfBalancingBinarySearchTree {
     protected Node delete(Node deleteNode) {
         if (deleteNode != null) {
             // rotate node down to leaf
-            Node replaceNode = rotateDown((TreapNode)deleteNode);
+            Node replaceNode = rotateDown((TreapNode) deleteNode);
             // then delete it normally
             super.delete(deleteNode);
             return replaceNode;
         }
         return null;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -65,10 +68,11 @@ public class Treap extends AbstractSelfBalancingBinarySearchTree {
     }
 
     /**
-     * Rotates a node downwards until it becomes a leaf. It must be deleted later to keep heap property intact.
-     * 
+     * Rotates a node downwards until it becomes a leaf. It must be deleted
+     * later to keep heap property intact.
+     *
      * @param node The node which is moved to leaf.
-     * 
+     *
      * @return Node that replaces the one which is moved downwards to leaf.
      */
     private Node rotateDown(TreapNode node) {
@@ -100,12 +104,14 @@ public class Treap extends AbstractSelfBalancingBinarySearchTree {
     }
 
     /**
-     * Node for Treap. It has additional priority value which is set randomly. It is used for tree randomization.
-     * 
+     * Node for Treap. It has additional priority value which is set randomly.
+     * It is used for tree randomization.
+     *
      * @author Ignas Lelys
      * @created Jul 25, 2011
      */
     protected static class TreapNode extends Node {
+
         public int priority;
 
         public TreapNode(int value, Node parent, Node left, Node right, int priority) {

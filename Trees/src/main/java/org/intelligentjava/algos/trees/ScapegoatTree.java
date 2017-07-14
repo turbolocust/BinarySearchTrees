@@ -7,20 +7,23 @@ import java.util.Stack;
 import org.intelligentjava.algos.trees.utils.MathUtils;
 
 /**
- * Scapegoat tree non recursive implementation.
- * Warning: not sure if my implementations is really correct, didn't have time to learn more about scapegoat trees.
- * 
+ * Scapegoat tree non recursive implementation. Warning: not sure if my
+ * implementations is really correct, didn't have time to learn more about
+ * scapegoat trees.
+ *
  * @author Ignas Lelys
  * @created Jul 28, 2011
- * 
+ *
  */
 public class ScapegoatTree extends AbstractSelfBalancingBinarySearchTree {
 
-    /** Alpha parameter. */
+    /**
+     * Alpha parameter.
+     */
     private double alpha = 0.57;
-    
+
     private int maxSize = 0;
-    
+
     /**
      * Constructor.
      */
@@ -30,7 +33,7 @@ public class ScapegoatTree extends AbstractSelfBalancingBinarySearchTree {
 
     /**
      * Constructor.
-     * 
+     *
      * @param alpha Alpha parameter.
      */
     public ScapegoatTree(double alpha) {
@@ -65,7 +68,7 @@ public class ScapegoatTree extends AbstractSelfBalancingBinarySearchTree {
         }
         return inserted;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -78,7 +81,7 @@ public class ScapegoatTree extends AbstractSelfBalancingBinarySearchTree {
         }
         return replaceNode;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -86,41 +89,44 @@ public class ScapegoatTree extends AbstractSelfBalancingBinarySearchTree {
     protected Node createNode(int value, Node parent, Node left, Node right) {
         return new Node(value, parent, left, right);
     }
-    
+
     /**
      * Finds scapegoat node which is used for rebalancing the tree.
-     * 
+     *
      * @return Scapegoat node.
      */
     protected Node findScapegoatNode(Node node) {
-        int size = 1;
+        int curSize = 1;
         int height = 0;
         int totalSize = 0;
         while (node.parent != null) {
             height++;
-            totalSize = 1 + size + getSubtreeSize(getSibling(node));
+            totalSize = 1 + curSize + getSubtreeSize(getSibling(node));
             if (height > Math.floor(MathUtils.logarithm(1 / alpha, totalSize))) {
                 return node.parent;
             }
             node = node.parent;
-            size = totalSize;
+            curSize = totalSize;
         }
         return null;
     }
 
     /**
-     * Rebuilds unbalanced tree.
-     * Found this implementation much clearer and easier to make it work: https://github.com/satchamo/Scapegoat-Tree/blob/master/scapegoat.py
+     * Rebuilds unbalanced tree. Found this implementation much clearer and
+     * easier to make it work:
+     * https://github.com/satchamo/Scapegoat-Tree/blob/master/scapegoat.py
      * Could't get implementations from pdfs to work.
-     * 
+     *
      * @param size Size of subtree.
-     * @param scapegoat Scapegoat is the root of subtree of {@link size} number of nodes.
-     * 
+     * @param scapegoat Scapegoat is the root of subtree of {@link size} number
+     * of nodes.
+     *
      * @return Balanced subtree.
      */
     protected Node rebuildTree(int size, Node scapegoat) {
-        List<Node> nodes = new ArrayList<Node>();
-        
+
+        List<Node> nodes = new ArrayList<>();
+
         // flatten tree without recursion
         Node currentNode = scapegoat;
         boolean done = false;
@@ -139,23 +145,23 @@ public class ScapegoatTree extends AbstractSelfBalancingBinarySearchTree {
                 }
             }
         }
-        
+
         // build tree from flattened list of nodes
         return buildTree(nodes, 0, size - 1);
     }
-    
+
     /**
      * Build balanced tree from flattened tree.
      */
     private Node buildTree(List<Node> nodes, int start, int end) {
-        int middle = (int)Math.ceil(((double)(start + end)) / 2.0);
+        int middle = (int) Math.ceil(((double) (start + end)) / 2.0);
         if (start > end) {
             return null;
         }
 
         // middle becomes root of subtree instead of scapegoat
         Node node = nodes.get(middle);
-        
+
         // recursively get left and right nodes
         Node leftNode = buildTree(nodes, start, middle - 1);
         node.left = leftNode;
@@ -169,7 +175,7 @@ public class ScapegoatTree extends AbstractSelfBalancingBinarySearchTree {
         }
         return node;
     }
-    
+
     /**
      * @return Node's sibling.
      */
@@ -184,12 +190,11 @@ public class ScapegoatTree extends AbstractSelfBalancingBinarySearchTree {
         }
         return null;
     }
-    
+
     /**
      * Calculate size of subtree.
-     * 
-     * @param node
-     *            Subtree root node.
+     *
+     * @param node Subtree root node.
      * @return Number of elements in the subtree.
      */
     // TODO move to AbstractBinaySearchTree
@@ -206,7 +211,7 @@ public class ScapegoatTree extends AbstractSelfBalancingBinarySearchTree {
             return sum;
         }
     }
-    
+
     // TODO move to AbstractBinaySearchTree
     protected int getNodeHeight(Node node) {
         if (node == null) {
@@ -219,7 +224,7 @@ public class ScapegoatTree extends AbstractSelfBalancingBinarySearchTree {
     }
 
     private int getHAlpha() {
-        return (int)Math.floor(MathUtils.logarithm(1 / alpha, (double)getSize()));
+        return (int) Math.floor(MathUtils.logarithm(1 / alpha, (double) getSize()));
     }
 
 }

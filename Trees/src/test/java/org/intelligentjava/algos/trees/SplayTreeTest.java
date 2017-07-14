@@ -1,6 +1,6 @@
 package org.intelligentjava.algos.trees;
 
-import org.intelligentjava.algos.trees.AbstractBinarySearchTree.Node;
+import org.intelligentjava.algos.SearchTree.Node;
 import org.junit.Assert;
 import org.junit.Test;
 

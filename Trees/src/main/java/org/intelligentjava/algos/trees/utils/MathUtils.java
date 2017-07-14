@@ -35,6 +35,9 @@ public class MathUtils {
     
     /**
      * Calculates logarithm.
+     * @param base
+     * @param a
+     * @return 
      */
     public static double logarithm(double base, double a) {
         return Math.log(a) / Math.log(base);
