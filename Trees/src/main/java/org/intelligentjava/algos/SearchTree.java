@@ -10,80 +10,98 @@ package org.intelligentjava.algos;
 public interface SearchTree {
 
     /**
-     * Finds a node with concrete value. If it is not found then null is
+     * Finds a node with concrete value. If it is not found then {@code null} is
      * returned.
      *
-     * @param element Element value.
-     * @return Node with value provided, or null if not found.
+     * @param element the element to be found.
+     * @return node with value provided, or {@code null} if not found.
      */
     public Node search(int element);
 
     /**
-     * Insert new element to tree.
+     * Inserts a new element in the tree.
      *
-     * @param element Element to insert.
-     * @return
+     * @param element the element to be inserted.
+     * @return the newly inserted element as {@link Node}.
      */
     public Node insert(int element);
 
     /**
-     * Removes element if node with such value exists.
+     * Removes the specified element if {@link Node} with such value exists.
      *
-     * @param element Element value to remove.
-     *
-     * @return New node that is in place of deleted node. Or null if element for
-     * delete was not found.
+     * @param element the element to be removed.
+     * @return new {@link Node} that is in place of deleted one. Or {@code null}
+     * if element to be deleted was not found.
      */
     public Node delete(int element);
 
     /**
-     * @param element
-     * @return true if tree contains element.
+     * Checks whether this tree contains the specified element or not.
+     *
+     * @param element the element to be checked.
+     * @return true if tree contains element, false otherwise.
      */
     public boolean contains(int element);
 
     /**
-     * @return Minimum element in tree.
+     * Finds the minimum element in the tree.
+     *
+     * @return the minimum element in the tree.
      */
     public int getMinimum();
 
     /**
-     * @return Maximum element in tree.
+     * Finds the maximum element in the tree.
+     *
+     * @return the maximum element in the tree.
      */
     public int getMaximum();
 
     /**
-     * Get next element element who is bigger than provided element.
+     * Get next element that is bigger than the provided element.
      *
-     * @param element Element for whom descendand element is searched
-     * @return Successor value.
+     * @param element the element for whom descendent element is searched.
+     * @return the successor of the specified element.
      */
     public int getSuccessor(int element);
 
     /**
-     * @return Number of elements in the tree.
+     * Returns the number of elements in the tree.
+     *
+     * @return the number of elements in the tree.
      */
     public int getSize();
 
     /**
-     * Tree traversal with printing element values. In order method.
+     * Tree traversal with printing element values. In-order method.
      */
     public void printTreeInOrder();
 
     /**
-     * Tree traversal with printing element values. Pre order method.
+     * Tree traversal with printing element values. Pre-order method.
      */
     public void printTreePreOrder();
 
     /**
-     * Tree traversal with printing element values. Post order method.
+     * Tree traversal with printing element values. Post-order method.
      */
     public void printTreePostOrder();
 
+    /**
+     * Prints the tree starting from root node.
+     */
     public void printTree();
 
+    /**
+     * Prints a subtree starting from the specified {@link Node}.
+     *
+     * @param node the node from which to start traversal from.
+     */
     public void printSubtree(Node node);
 
+    /**
+     * Represents a node in a search tree.
+     */
     public static class Node {
 
         public Node(Integer value, Node parent, Node left, Node right) {
@@ -99,6 +117,11 @@ public interface SearchTree {
         public Node left;
         public Node right;
 
+        /**
+         * Checks whether this node is a leaf or not.
+         *
+         * @return true if this node is a leaf, false otherwise.
+         */
         public boolean isLeaf() {
             return left == null && right == null;
         }

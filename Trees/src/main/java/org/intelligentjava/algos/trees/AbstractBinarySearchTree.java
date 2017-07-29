@@ -11,7 +11,6 @@ import org.intelligentjava.algos.SearchTree;
  *
  * @author Ignas Lelys
  * @created Jun 29, 2011
- *
  */
 public abstract class AbstractBinarySearchTree implements SearchTree {
 
@@ -39,13 +38,6 @@ public abstract class AbstractBinarySearchTree implements SearchTree {
      */
     protected abstract Node createNode(int value, Node parent, Node left, Node right);
 
-    /**
-     * Finds a node with concrete value. If it is not found then null is
-     * returned.
-     *
-     * @param element Element value.
-     * @return Node with value provided, or null if not found.
-     */
     @Override
     public Node search(int element) {
         Node node = root;
@@ -59,11 +51,6 @@ public abstract class AbstractBinarySearchTree implements SearchTree {
         return node;
     }
 
-    /**
-     * Insert new element to tree.
-     *
-     * @param element Element to insert.
-     */
     @Override
     public Node insert(int element) {
         if (root == null) {
@@ -94,14 +81,6 @@ public abstract class AbstractBinarySearchTree implements SearchTree {
         return newNode;
     }
 
-    /**
-     * Removes element if node with such value exists.
-     *
-     * @param element Element value to remove.
-     *
-     * @return New node that is in place of deleted node. Or null if element for
-     * delete was not found.
-     */
     @Override
     public Node delete(int element) {
         Node deleteNode = search(element);
@@ -169,69 +148,41 @@ public abstract class AbstractBinarySearchTree implements SearchTree {
         return newNode;
     }
 
-    /**
-     * @param element
-     * @return true if tree contains element.
-     */
     @Override
     public boolean contains(int element) {
         return search(element) != null;
     }
 
-    /**
-     * @return Minimum element in tree.
-     */
     @Override
     public int getMinimum() {
         return getMinimum(root).value;
     }
 
-    /**
-     * @return Maximum element in tree.
-     */
     @Override
     public int getMaximum() {
         return getMaximum(root).value;
     }
 
-    /**
-     * Get next element element who is bigger than provided element.
-     *
-     * @param element Element for whom descendand element is searched
-     * @return Successor value.
-     */
     @Override
     public int getSuccessor(int element) {
         return getSuccessor(search(element)).value;
     }
 
-    /**
-     * @return Number of elements in the tree.
-     */
     @Override
     public int getSize() {
         return size;
     }
 
-    /**
-     * Tree traversal with printing element values. In order method.
-     */
     @Override
     public void printTreeInOrder() {
         printTreeInOrder(root);
     }
 
-    /**
-     * Tree traversal with printing element values. Pre order method.
-     */
     @Override
     public void printTreePreOrder() {
         printTreePreOrder(root);
     }
 
-    /**
-     * Tree traversal with printing element values. Post order method.
-     */
     @Override
     public void printTreePostOrder() {
         printTreePostOrder(root);
